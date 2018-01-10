@@ -106,7 +106,7 @@
   (or
     (usuario.necesidad mayor)
     (usuario.camara si)
-    ;resto de condiciones
+    ;resto de condiciones 
   )
   =>
     (telefono.gama alta);gama del movil = alta
