@@ -1,135 +1,91 @@
-; Tue Jan 09 23:16:54 CET 2018
-; 
+; Fri Jan 12 13:43:31 CET 2018
+;
 ;+ (version "3.5")
 ;+ (build "Build 663")
 
-
-(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+(defclass COMPRADOR "Entidad que representa al Usuario del Sistema"
 	(is-a USER)
-	(role abstract)
-	(single-slot SO
-		(type STRING)
-;+		(cardinality 0 1)
+	(role concrete)
+	(single-slot NECESIDADES
+;+		(comment "Necesidades que el comprador espera que el movil elegido satisfaga")
+		(type INSTANCE)
+		(allowed-classes C_NECESIDADES)
 		(create-accessor read-write))
 	(single-slot PRESUPUESTO
 ;+		(comment "Cantidad de dinero de la que se dispone para la adquisicion del movil.")
 		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot MUCHOS+ARCHIVOS
-;+		(comment "El usuario desea almacenar muchos archivos en el movil")
-		(type STRING)
-;+		(value "si" "no")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot PRECIO
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot ESPACIO
-;+		(comment "Espacio de almacenamiento")
-		(type STRING)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot CAMARA+BUENA
+		(create-accessor read-write)))
+
+(defclass C_NECESIDADES "Representa las necesidades del Usuario del Sistema; lo que espera que el movil elegido satisfaga"
+	(is-a USER)
+	(role concrete)
+	(single-slot CAMARA_BUENA
 ;+		(comment "Importancia dada a que la camara del movil sea buena")
-		(type STRING)
-;+		(value "indiferente" "buena")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot ECOSISTEMA+APPLE
-;+		(comment "Si el usuario dispone de otros dispositivos Apple")
-		(type STRING)
-;+		(value "si" "no")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot JUEGOS+Y+APPS
-;+		(comment "Uso de aplicaciones y juegos")
-		(type STRING)
-;+		(value "pocos" "algunos" "muchos")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot GAMA
-;+		(comment "Gama del movil")
-		(type STRING)
-;+		(value "baja" "media" "alta")
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot CAMARA_MOVIL
-;+		(comment "Camara del telefono movil")
 		(type SYMBOL)
-;+		(allowed-parents)
-;+		(value CAMARA)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass USUARIO "Entidad que representa al Usuario del Sistema"
-	(is-a USER)
-	(role concrete)
-	(single-slot PRESUPUESTO
-;+		(comment "Cantidad de dinero de la que se dispone para la adquisicion del movil.")
-		(type INTEGER)
-;+		(cardinality 0 1)
-		(create-accessor read-write)))
-
-(defclass NECESIDADES "Representa las necesidades del Usuario del Sistema; lo que espera que el movil elegido satisfaga"
-	(is-a USER)
-	(role concrete)
-	(single-slot CAMARA+BUENA
-;+		(comment "Importancia dada a que la camara del movil sea buena")
-		(type STRING)
-;+		(value "indiferente" "buena")
-;+		(cardinality 0 1)
+		(allowed-values INDIFERENTE BUENA)
 		(create-accessor read-write))
-	(single-slot ECOSISTEMA+APPLE
+	(single-slot ECOSISTEMA_APPLE
 ;+		(comment "Si el usuario dispone de otros dispositivos Apple")
-		(type STRING)
-;+		(value "si" "no")
-;+		(cardinality 0 1)
+		(type SYMBOL)
+		(allowed-values SI NO)
 		(create-accessor read-write))
-	(single-slot JUEGOS+Y+APPS
+	(single-slot JUEGOS_Y_APPS
 ;+		(comment "Uso de aplicaciones y juegos")
-		(type STRING)
-;+		(value "pocos" "algunos" "muchos")
-;+		(cardinality 0 1)
+		(type SYMBOL)
+		(allowed-values POCOS ALGUNOS MUCHOS)
 		(create-accessor read-write))
-	(single-slot MUCHOS+ARCHIVOS
+	(single-slot MUCHOS_ARCHIVOS
 ;+		(comment "El usuario desea almacenar muchos archivos en el movil")
-		(type STRING)
-;+		(value "si" "no")
-;+		(cardinality 0 1)
+		(type SYMBOL)
+		(allowed-values SI NO)
 		(create-accessor read-write)))
 
 (defclass MOVIL
 	(is-a USER)
 	(role concrete)
 	(single-slot ESPACIO
-;+		(comment "Espacio de almacenamiento")
-		(type STRING)
-;+		(cardinality 0 1)
+;+		(comment "Espacio de almacenamiento del movil")
+		(type SYMBOL)
+		(allowed-values POCO MUCHO)
 		(create-accessor read-write))
 	(single-slot SO
-		(type STRING)
-;+		(cardinality 0 1)
+;+		(comment "Sistema Operativo del movil")
+		(type SYMBOL)
+		(allowed-values ANDROID IOS WINDOWS)
 		(create-accessor read-write))
 	(single-slot PRECIO
-		(type STRING)
-;+		(cardinality 0 1)
+;+		(comment "Precio del movil en Euros")
+		(type INTEGER)
 		(create-accessor read-write))
 	(single-slot GAMA
 ;+		(comment "Gama del movil")
-		(type STRING)
-;+		(value "baja" "media" "alta")
-;+		(cardinality 0 1)
+		(type SYMBOL)
+		(allowed-values BAJA MEDIA ALTA)
 		(create-accessor read-write))
 	(single-slot CAMARA_MOVIL
 ;+		(comment "Camara del telefono movil")
-		(type SYMBOL)
-;+		(allowed-parents)
-;+		(value CAMARA)
-;+		(cardinality 0 1)
+		(type INSTANCE)
+;+		(allowed-classes CAMARA)
 		(create-accessor read-write)))
 
 (defclass CAMARA
 	(is-a USER)
-	(role abstract))
+	(role abstract)
+	(single-slot FRONTAL
+;+		(comment "Camara Frontal (para autofotos) del movil")
+		(type INSTANCE)
+;+		(allowed-classes C_CAMARA)
+		(create-accessor read-write))
+	(single-slot TRASERA
+;+		(comment "Camara principal del movil")
+		(type SYMBOL)
+;+		(allowed-classes C_CAMARA)
+		(create-accessor read-write)))
+
+(defclass C_CAMARA
+	(is-a USER)
+	(role concrete)
+	(single-slot CALIDAD
+		(type SYMBOL)
+		(allowed-values MALA BUENA)
+		(create-accessor read-write)))

@@ -16,23 +16,23 @@
 (defmodule DATOS (export deftemplate ?ALL)
 		(import MAIN ?ALL))
 
-;TODO especificar cada tipo de dato y sus restricciones
-
 ;estructura que representa un telefono movil
-(deftemplate telefono
-	(slot gama)
+(deftemplate movil
+	(slot espacio)
+	(slot sistema-operativo)
 	(slot precio
 	      (type INTEGER))
-	(slot procesador)
-	(slot sistema-operativo)
-	(slot espacio
- 	      (type INTEGER))
-	(slot camara))
+	(slot gama)
+	(slot cam-frontal)
+	(slot cam-trasera))
 
 ;estructura que representa al usuario/comprador
-(deftemplate usuario
+(deftemplate comprador
 	(slot presupuesto (type INTEGER))
-	(slot necesidad))
+	(slot camara-buena)
+	(slot ecosistema-apple)
+	(slot juegos-y-apps)
+	(slot espacio))
 
 ;;*******************************
 ;;*  DEFINICIONES DE FUNCIONES  *
@@ -106,7 +106,7 @@
   (or
     (usuario.necesidad mayor)
     (usuario.camara si)
-    ;resto de condiciones 
+    ;resto de condiciones
   )
   =>
     (telefono.gama alta);gama del movil = alta

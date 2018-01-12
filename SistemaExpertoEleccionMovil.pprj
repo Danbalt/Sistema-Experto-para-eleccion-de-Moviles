@@ -1,4 +1,4 @@
-; Tue Jan 09 23:16:54 CET 2018
+; Fri Jan 12 13:16:35 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -20,9 +20,9 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[SistemaExpertoEleccionMovil_ProjectKB_Class111]
-		[SistemaExpertoEleccionMovil_ProjectKB_Class112]
-		[SistemaExpertoEleccionMovil_ProjectKB_Class113]))
+		[SistemaExpertoEleccionMovil_ProjectKB_Class75]
+		[SistemaExpertoEleccionMovil_ProjectKB_Class76]
+		[SistemaExpertoEleccionMovil_ProjectKB_Class77]))
 
 ([CLSES_TAB] of  Widget
 
@@ -71,337 +71,10 @@
 ([KB_547337_Class1] of  Map
 )
 
-([KB_547337_Class10] of  Property_List
-)
-
 ([KB_547337_Class100] of  String
 
 	(name "instances_file_name")
 	(string_value "SistemaExpertoEleccionMovil.pins"))
-
-([KB_547337_Class11] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class12])
-	(widget_class_name "dfki.protege.ontoviz_tab.OntovizTab"))
-
-([KB_547337_Class12] of  Property_List
-)
-
-([KB_547337_Class13] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class14])
-	(widget_class_name "edu.stanford.smi.protegex.owl.ui.cls.OWLClassesTab"))
-
-([KB_547337_Class14] of  Property_List
-)
-
-([KB_547337_Class15] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class16])
-	(widget_class_name "edu.stanford.smi.protegex.server_changes.prompt.UsersTab"))
-
-([KB_547337_Class16] of  Property_List
-)
-
-([KB_547337_Class17] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class18])
-	(widget_class_name "edu.stanford.smi.protege.query.LuceneQueryPlugin"))
-
-([KB_547337_Class18] of  Property_List
-)
-
-([KB_547337_Class19] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class20])
-	(widget_class_name "edu.stanford.smi.protege.widget.ClsesAndInstancesTab"))
-
-([KB_547337_Class2] of  Map
-)
-
-([KB_547337_Class20] of  Property_List
-)
-
-([KB_547337_Class21] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class22])
-	(widget_class_name "edu.stanford.smi.protege.widget.KAToolTab"))
-
-([KB_547337_Class22] of  Property_List
-)
-
-([KB_547337_Class23] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class24])
-	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.KnowledgeTreeTab"))
-
-([KB_547337_Class24] of  Property_List
-)
-
-([KB_547337_Class25] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class26])
-	(widget_class_name "edu.stanford.smi.protege.keywordsearch.StringSearch"))
-
-([KB_547337_Class26] of  Property_List
-)
-
-([KB_547337_Class27] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class28])
-	(widget_class_name "edu.stanford.smi.protegex.prompt.PromptTab"))
-
-([KB_547337_Class28] of  Property_List
-)
-
-([KB_547337_Class29] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class30])
-	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalConstraintsTab"))
-
-([KB_547337_Class3] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class4])
-	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormsTab"))
-
-([KB_547337_Class30] of  Property_List
-)
-
-([KB_547337_Class31] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class32])
-	(widget_class_name "edu.stanford.smi.protegex.owl.ui.metadatatab.OWLMetadataTab"))
-
-([KB_547337_Class32] of  Property_List
-)
-
-([KB_547337_Class33] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class34])
-	(widget_class_name "edu.stanford.smi.protegex.owl.swrl.ui.tab.SWRLTab"))
-
-([KB_547337_Class34] of  Property_List
-)
-
-([KB_547337_Class35] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class36])
-	(widget_class_name "edu.stanford.smi.protegex.owl.ui.individuals.OWLIndividualsTab"))
-
-([KB_547337_Class36] of  Property_List
-)
-
-([KB_547337_Class37] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class38])
-	(widget_class_name "uk.ac.man.cs.mig.coode.debugger.test.DebuggerTestTab"))
-
-([KB_547337_Class38] of  Property_List
-)
-
-([KB_547337_Class39] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class40])
-	(widget_class_name "ca.uvic.csr.shrimp.jambalaya.JambalayaTab"))
-
-([KB_547337_Class4] of  Property_List
-)
-
-([KB_547337_Class40] of  Property_List
-)
-
-([KB_547337_Class41] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class42])
-	(widget_class_name "edu.stanford.smi.protegex.changes.ChangesTab"))
-
-([KB_547337_Class42] of  Property_List
-)
-
-([KB_547337_Class43] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class44])
-	(widget_class_name "org.protege.owl.axiome.ui.AxiomeTab"))
-
-([KB_547337_Class44] of  Property_List
-)
-
-([KB_547337_Class45] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class46])
-	(widget_class_name "TGViztab.TGVizTab"))
-
-([KB_547337_Class46] of  Property_List
-)
-
-([KB_547337_Class47] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class48])
-	(widget_class_name "edu.stanford.smi.protegex.owl.ui.properties.OWLPropertiesTab"))
-
-([KB_547337_Class48] of  Property_List
-)
-
-([KB_547337_Class49] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class50])
-	(widget_class_name "uk.ac.man.ac.mig.coode.individuals.ui.OWLDLIndividualsTab"))
-
-([KB_547337_Class5] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class6])
-	(widget_class_name "org.protege.owl.mm.portability.protege3.MappingMasterTab"))
-
-([KB_547337_Class50] of  Property_List
-)
-
-([KB_547337_Class51] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class52])
-	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.InstanceTreeTab"))
-
-([KB_547337_Class52] of  Property_List
-)
-
-([KB_547337_Class53] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class54])
-	(widget_class_name "edu.stanford.smi.protegex.evaluation.MetaAnalysis"))
-
-([KB_547337_Class54] of  Property_List
-)
-
-([KB_547337_Class55] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class56])
-	(widget_class_name "edu.stanford.smi.protegex.changes.changesKBViewTab.ChangesKBViewTab"))
-
-([KB_547337_Class56] of  Property_List
-)
-
-([KB_547337_Class57] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class58])
-	(widget_class_name "se.liu.ida.JessTab.JessTab"))
-
-([KB_547337_Class58] of  Property_List
-)
-
-([KB_547337_Class59] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class60])
-	(widget_class_name "edu.stanford.smi.protegex.changeanalysis.ChangeAnalysisTab"))
-
-([KB_547337_Class6] of  Property_List
-)
-
-([KB_547337_Class60] of  Property_List
-)
-
-([KB_547337_Class61] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class62])
-	(widget_class_name "uk.ac.man.cs.mig.coode.owlviz.ui.OWLVizTab"))
-
-([KB_547337_Class62] of  Property_List
-)
-
-([KB_547337_Class63] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class64])
-	(widget_class_name "edu.stanford.smi.protegex.changes.stats.ChangeStatisticsTab"))
-
-([KB_547337_Class64] of  Property_List
-)
-
-([KB_547337_Class65] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class66])
-	(widget_class_name "script.ProtegeScriptTab"))
-
-([KB_547337_Class66] of  Property_List
-)
-
-([KB_547337_Class67] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class68])
-	(widget_class_name "edu.stanford.smi.protegex.chatPlugin.ChatTab"))
-
-([KB_547337_Class68] of  Property_List
-)
-
-([KB_547337_Class69] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class70])
-	(widget_class_name "edu.stanford.smi.protegex.fctab.FacetConstraintsTab"))
-
-([KB_547337_Class7] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class8])
-	(widget_class_name "edu.stanford.smi.protege.widget.ProtegePropertiesTab"))
-
-([KB_547337_Class70] of  Property_List
-)
-
-([KB_547337_Class71] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class72])
-	(widget_class_name "edu.stanford.smi.protegex.xml.tab.XMLTab"))
-
-([KB_547337_Class72] of  Property_List
-)
-
-([KB_547337_Class73] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class74])
-	(widget_class_name "edu.stanford.smi.protegex.datamaster.DataMasterTab"))
-
-([KB_547337_Class74] of  Property_List
-)
-
-([KB_547337_Class75] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class76])
-	(widget_class_name "ezpal.EZPalTab"))
-
-([KB_547337_Class76] of  Property_List
-)
 
 ([KB_547337_Class77] of  Property_List
 
@@ -418,9 +91,6 @@
 
 	(boolean_value FALSE)
 	(name "ButtonDisplayed-Delete Instance"))
-
-([KB_547337_Class8] of  Property_List
-)
 
 ([KB_547337_Class80] of  Property_List
 )
@@ -460,12 +130,6 @@
 ([KB_547337_Class89] of  Property_List
 )
 
-([KB_547337_Class9] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [KB_547337_Class10])
-	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalQueriesTab"))
-
 ([KB_547337_Class90] of  Property_List
 )
 
@@ -498,6 +162,9 @@
 
 	(name "classes_file_name")
 	(string_value "SistemaExpertoEleccionMovil.pont"))
+
+([KB_637345_Class0] of  Map
+)
 
 ([LAYOUT_PROPERTIES] of  Property_List
 
@@ -606,24 +273,357 @@
 	(property_list [KB_547337_Class98])
 	(widget_class_name "edu.stanford.smi.protegex.queries_tab.QueriesTab"))
 
+([SistemaExpertoEleccionMovil_ProjectKB_Class1] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class2])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormsTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class10] of  Property_List
+)
+
 ([SistemaExpertoEleccionMovil_ProjectKB_Class101] of  String
 
 	(name "SearchTab_Query"))
 
-([SistemaExpertoEleccionMovil_ProjectKB_Class111] of  String
+([SistemaExpertoEleccionMovil_ProjectKB_Class11] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class12])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.cls.OWLClassesTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class12] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class13] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class14])
+	(widget_class_name "edu.stanford.smi.protegex.server_changes.prompt.UsersTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class14] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class15] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class16])
+	(widget_class_name "edu.stanford.smi.protege.query.LuceneQueryPlugin"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class16] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class17] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class18])
+	(widget_class_name "edu.stanford.smi.protege.widget.ClsesAndInstancesTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class18] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class19] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class20])
+	(widget_class_name "edu.stanford.smi.protege.widget.KAToolTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class2] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class20] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class21] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class22])
+	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.KnowledgeTreeTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class22] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class23] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class24])
+	(widget_class_name "edu.stanford.smi.protege.keywordsearch.StringSearch"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class24] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class25] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class26])
+	(widget_class_name "edu.stanford.smi.protegex.prompt.PromptTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class26] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class27] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class28])
+	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalConstraintsTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class28] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class29] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class30])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.metadatatab.OWLMetadataTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class3] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class4])
+	(widget_class_name "org.protege.owl.mm.portability.protege3.MappingMasterTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class30] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class31] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class32])
+	(widget_class_name "edu.stanford.smi.protegex.owl.swrl.ui.tab.SWRLTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class32] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class33] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class34])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.individuals.OWLIndividualsTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class34] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class35] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class36])
+	(widget_class_name "uk.ac.man.cs.mig.coode.debugger.test.DebuggerTestTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class36] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class37] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class38])
+	(widget_class_name "ca.uvic.csr.shrimp.jambalaya.JambalayaTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class38] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class39] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class40])
+	(widget_class_name "edu.stanford.smi.protegex.changes.ChangesTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class4] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class40] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class41] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class42])
+	(widget_class_name "org.protege.owl.axiome.ui.AxiomeTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class42] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class43] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class44])
+	(widget_class_name "TGViztab.TGVizTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class44] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class45] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class46])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.properties.OWLPropertiesTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class46] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class47] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class48])
+	(widget_class_name "uk.ac.man.ac.mig.coode.individuals.ui.OWLDLIndividualsTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class48] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class49] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class50])
+	(widget_class_name "edu.stanford.smi.protege.widget.instance_tree.InstanceTreeTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class5] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class6])
+	(widget_class_name "edu.stanford.smi.protege.widget.ProtegePropertiesTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class50] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class51] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class52])
+	(widget_class_name "edu.stanford.smi.protegex.evaluation.MetaAnalysis"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class52] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class53] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class54])
+	(widget_class_name "edu.stanford.smi.protegex.changes.changesKBViewTab.ChangesKBViewTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class54] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class55] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class56])
+	(widget_class_name "se.liu.ida.JessTab.JessTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class56] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class57] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class58])
+	(widget_class_name "edu.stanford.smi.protegex.changeanalysis.ChangeAnalysisTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class58] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class59] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class60])
+	(widget_class_name "uk.ac.man.cs.mig.coode.owlviz.ui.OWLVizTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class6] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class60] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class61] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class62])
+	(widget_class_name "edu.stanford.smi.protegex.changes.stats.ChangeStatisticsTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class62] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class63] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class64])
+	(widget_class_name "script.ProtegeScriptTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class64] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class65] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class66])
+	(widget_class_name "edu.stanford.smi.protegex.chatPlugin.ChatTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class66] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class67] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class68])
+	(widget_class_name "edu.stanford.smi.protegex.fctab.FacetConstraintsTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class68] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class69] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class70])
+	(widget_class_name "edu.stanford.smi.protegex.xml.tab.XMLTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class7] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class8])
+	(widget_class_name "edu.stanford.smi.protegex.widget.pal.PalQueriesTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class70] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class71] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class72])
+	(widget_class_name "edu.stanford.smi.protegex.datamaster.DataMasterTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class72] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class73] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class74])
+	(widget_class_name "ezpal.EZPalTab"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class74] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class75] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([SistemaExpertoEleccionMovil_ProjectKB_Class112] of  String
+([SistemaExpertoEleccionMovil_ProjectKB_Class76] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([SistemaExpertoEleccionMovil_ProjectKB_Class113] of  String
+([SistemaExpertoEleccionMovil_ProjectKB_Class77] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class8] of  Property_List
+)
+
+([SistemaExpertoEleccionMovil_ProjectKB_Class9] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [SistemaExpertoEleccionMovil_ProjectKB_Class10])
+	(widget_class_name "dfki.protege.ontoviz_tab.OntovizTab"))
 
 ([SLOTS_TAB] of  Widget
 
