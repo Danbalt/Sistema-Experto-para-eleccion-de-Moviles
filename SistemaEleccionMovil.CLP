@@ -13,15 +13,24 @@
 ;;******************************************
 ;;	DATOS
 ;;******************************************
-(defmodule DATOS (export deftemplate ?ALL)
+(defmodule DATOS (export ?ALL)
 		(import MAIN ?ALL))
 
 ;estructura que representa un telefono movil
-(deftemplate movil
+(deftemplate buscamovil
 	(slot espacio)
+	(slot memoria)
 	(slot sistema-operativo)
-	(slot precio
-	      (type INTEGER))
+	(slot gama)
+	(slot cam-frontal)
+	(slot cam-trasera))
+
+(deftemplate rmovil
+	(slot modelo)
+	(slot precio (type INTEGER))
+	(slot espacio)
+	(slot memoria)
+	(slot sistema-operativo)
 	(slot gama)
 	(slot cam-frontal)
 	(slot cam-trasera))
@@ -29,7 +38,8 @@
 ;estructura que representa al usuario/comprador
 (deftemplate comprador
 	(slot presupuesto (type INTEGER))
-	(slot camara-buena)
+	(slot camara)
+	(slot selfies)
 	(slot ecosistema-apple)
 	(slot juegos-y-apps)
 	(slot espacio))
@@ -47,100 +57,136 @@
       (printout t ?pregunta)
       (bind ?respuesta (read))
       (if (lexemep ?respuesta)
-          then (bind ?respuesta (lowcase ?respuesta))))
-   ?respuesta)
+          then (bind ?respuesta (lowcase ?respuesta)))
+	 )
+   ?respuesta
+)
 
 (deffunction p-si-o-no (?pregunta)
    (bind ?respuesta (preguntar ?pregunta si no s n))
    (if (or (eq ?respuesta si) (eq ?respuesta s))
        then TRUE
-       else FALSE))
+       else FALSE
+		)
+)
+
+(deffunction p-cantidad (?pregunta)
+	(printout t ?pregunta)
+	(bind ?respuesta (read-number))
+	(while ((eq ?respuesta "*** READ ERROR ***" )) do
+		(printout t ?pregunta)
+		(bind ?respuesta (read-number))
+	)
+	?respuesta
+)
+
 
 ;;;*******************************************************************
 ;;;* MODULO DE OBTENCION DE PERFIL DE USUARIO
 ;;;*
 ;;;*******************************************************************
-(defmodule PERFIL (import MAIN ?ALL));TODO: importar solo lo necesario
+(defmodule PERFIL (import DATOS deftemplate deffunction));TODO: importar solo lo necesario
 
 ;TODO revisar y escribir bien las reglas e incluir las restantes
 
-(defrule PERFIL::R-determinar-presupuesto ""
-  (not (usuario.presupuesto ?));presupuesto del usuario no contiene valor
+(defrule PERFIL::R1-determinar-presupuesto ""
+  ?c <- (comprador (presupuesto 0));presupuesto del usuario no contiene valor
   =>
-  (bind ?respuesta
-     (preguntar "Presupuesto
-                              (cantidad)? "
-                   ?r &: (r sea un numero)));comprobacion de valor permitido
-  (if (< ?respuesta 100)
-   then
-        (usuario.presupuesto bajo);presupuesto del usuario = bajo
-   else (if (< ?respuesta 400)
-               then (usuario.presupuesto medio)));presupuesto del usuario = medio
-   else (usuario.presupuesto alto);presupuesto del usuario = alto
+  (bind ?r
+     (p-cantidad "¿Cual es su presupuesto? (Numero entero)"));comprobacion de valor permitido
+	(modify ?c (presupuesto ?r))
 )
 
-(defrule PERFIL::R-determinar-necesidad ""
-  (not (usuario.necesidad... ?));necesidad del usuario no contiene valor
+(defrule PERFIL::R2-determinar-necesidad ""
+  ?c <- (comprador (camara nil)(ecosistema-apple nil)(juegos-y-apps nil)(espacio nil));necesidad del usuario no contiene valor
   =>
-  (if (p-si-o-no "Usas juegos y aplicaciones (si/no)? ")
-  then
-    ;(if (p-si-o-no "Usas _muchos_ juegos y aplicaciones (si/no)? ")
-    ;  then (usuario.necesidad alta);necesidad muy exigente
-    ;  else
-        (usuario.necesidad mayor);necesidad mayor
-    ;)
-  else
-    (usuario.necesidad basica);necesidad basica
+  (if (p-si-o-no "¿Le da usted importancia a la camara del terminal (si/no)? ")
+  	then (modify ?c (camara buena))
+		else (modify ?c (camara indiferente))
+  )
+
+	(if (p-si-o-no "¿Utiliza usted la camara para hacerse selfies a menudo(si/no)? ")
+  	then (modify ?c (selfies si))
+		else (modify ?c (selfies no))
+  )
+
+	(if (p-si-o-no "¿Tiene usted otros dispositivos de apple (si/no)? ")
+  	then (modify ?c (ecosistema-apple si))
+		else (modify ?c (ecosistema-apple no))
+  )
+
+	(bind ?rja
+		 (preguntar "Cuantas apps y juegos usa (pocos/algunos/muchos)? " pocos algunos muchos))
+	(modify ?c (juegos-y-apps ?rja))
+
+	(if (p-si-o-no "¿Almacena usted muchos archivos o fotos en su dispositivo (si/no)? ")
+  	then (modify ?c (espacio mucho))
+		else (modify ?c (espacio poco))
   )
 )
 
 ;;;****************************************************
-;;;* MODULO DE DECISION *
+;;;* PERFIL DE MOVIL *
 ;;;****************************************************
-(defmodule DECISION (import MAIN ?ALL));TODO: importar solo lo necesario
+(defmodule PERFILM (import MAIN ?ALL));TODO: importar solo lo necesario
 
-;TODO corregir e incluir reglas que faltan
-
-(defrule DECISION::R-determinar-gama-alta "" ;o deberia evaluarse la gama (alta,media,baja) en una sola regla?
-  (not (telefono.gama... ?));gama del telefono no contiene valor
-  (or
-    (usuario.necesidad mayor)
-    (usuario.camara si)
-    ;resto de condiciones
-  )
-  =>
-    (telefono.gama alta);gama del movil = alta
+(defrule PERFILM::R3-determinar-gama ""
+	?m <- (buscamovil (gama media))
+	(comprador (presupuesto ?p)(juegos-y-apps ?ja)(camara ?c))
+	=>
+	(if (or (>= ?p 400) (eq ?ja muchos))
+		then (modify ?m (gama alta))
+	)
+	(if (or (< ?p 150 (eq ?ja pocos)))
+		then (modify ?m (gama baja))
+	)
 )
 
-(defrule DECISION::R-decision-sistema-operativo ""
-  (declare (salience 10))
-  (usuario.tieneproductosapple);el usuario dispone de (ecosistema de) productos Apple
-  ;resto de condiciones
-=>
-  (telefono.sistema-operativo iOS))
+(defrule PERFILM::R4-determinar-sistema-operativo ""
+  ?m <- (buscamovil (sistema-operativo nil))
+	(comprador (ecosistema-apple ?ea))
+	=>
+  (if (eq ?ea si)
+		then (modify ?m (sistema-operativo iOS))
+		else (modify ?m (sistema-operativo Android))
+	)
+)
 
-;para sistema Android, iOS o Windows Phone
+(defrule PERFILM::R5-determinar-espacio ""
+  ?m <- (buscamovil (espacio nil))
+	(comprador (espacio ?e))
+	=>
+  (modify ?m (espacio ?e))
+)
+(defrule PERFILM::R6-determinar-memoria
+	?m <- (buscamovil (memoria nil))
+	(comprador (juegos-y-apps ?ja))
+  =>
+	(if (or (eq ?ja muchos) (eq ?ja algunos))
+		then (modify ?m (memoria mucha))
+		else (modify ?m (memoria poca))
+	)
+	(modify ?m (memoria ?mem))
+)
 
-;;;****************************************************
-;;;* MODULO DE CONCLUSION (posible planteamiento)     *
-;;;****************************************************
+;;;*****************************************************
+;;;* DECISION *
+;;;*****************************************************
 
-;TODO incluir o no este modulo
+(defrule DECISION::R7-determinar-procesador-y-memoria ""
+	(buscamovil (espacio ?e)(gama ?g)(sistema-operativo ?s)(cam-frontal ?f)(cam-trasera ?t))
+	?rm<- (rmovil (modelo ?n)(gama ?g)(sistema-operativo ?s)(cam-frontal ?f)(cam-trasera ?t)(memoria ?m1))
 
-;(defmodule CONCLUSION (import MAIN ?ALL));TODO: importar solo lo necesario
-;(defrule CONCLUSION::R-conclusion-sistema-operativo-X ""
-; (declare (salience 10))
-; (sistema-operativo X)
-;   =>
-; (assert (decision "Sistema Operativo X.")))
-;
-;...
+	?lp <- (listapre $?lista)
+	=> (modify ?lp (listapre ?lista ?n))
+)
 
 ;;;*****************************************************
 ;;;* MODULO DE PRESENTACION DEL SISTEMA Y CONCLUSIONES *
 ;;;*****************************************************
-(defmodule PRESENTACION (export ?ALL) (import MAIN ?ALL));TODO: importar solo lo necesario
-(defrule PRESENTACION::R - intro ""
+(defmodule PRESENTACION (export ?ALL) (import MAIN ?ALL))
+;TODO: importar solo lo necesario
+(defrule PRESENTACION::R8 - intro ""
   (declare (salience 10))
   =>
   (printout t crlf crlf)
@@ -148,12 +194,15 @@
   (printout t crlf crlf)
 )
 
-(defrule PRESENTACION::R - resultado ""
+;(printout t crlf crlf)
+;(printout t "Terminales sugeridos:")
+
+(defrule PRESENTACION::R9 - resultado ""
   (declare (salience 10))
-  (telefono ?tel)
+  (moviles ?m $?resto)
   =>
-  (printout t crlf crlf)
-  (printout t "Terminal sugerido:")
+
+	(printout t ?m)
   (printout t crlf crlf)
   ;presentar caracteristicas del telefono
 )
@@ -164,4 +213,4 @@
 
 (defrule MAIN::inicio
 	(initial-fact)
-=>	(focus PERFIL DECISION PRESENTACION));TODO definir orden de operacion
+=>	(focus PERFIL PERFILM DECISION PRESENTACION));TODO definir orden de operacion
