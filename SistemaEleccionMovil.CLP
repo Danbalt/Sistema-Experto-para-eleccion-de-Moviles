@@ -42,13 +42,13 @@
 	(slot juegos-y-apps)
 	(slot espacio))
 
-(deftemplate listapre
+(deftemplate lista
 	(multislot lista-moviles))
 
 (defrule inicio
 	(initial-fact)
 =>
-	(assert (listapre))
+	(assert(lista))
 	(load-facts "DATOS.CLP")
 )
 
@@ -92,22 +92,21 @@
 ;;;* MODULO DE OBTENCION DE PERFIL DE USUARIO
 ;;;*
 ;;;*******************************************************************
-(defmodule PERFIL (import DATOS ?ALL));TODO: importar solo lo necesario
+(defmodule PERFIL (import DATOS ?ALL))
 
-;TODO revisar y escribir bien las reglas e incluir las restantes
 
 (defrule PERFIL::R1-determinar-presupuesto ""
   ?c <- (comprador (presupuesto 0));presupuesto del usuario no contiene valor
   =>
   (bind ?r
-     (p-cantidad "¿Cual es su presupuesto? (Numero entero)"));comprobacion de valor permitido
+     (p-cantidad "Cual es su presupuesto? (Numero entero)"));comprobacion de valor permitido
 	(modify ?c (presupuesto ?r))
 )
 
 (defrule PERFIL::R2-determinar-camara ""
   ?c <- (comprador (camara nil));necesidad del usuario no contiene valor
   =>
-  (if (p-si-o-no "¿Le da usted importancia a la camara del terminal (si/no)? ")
+  (if (p-si-o-no "Le da usted importancia a la camara del terminal (si/no)? ")
   	then (modify ?c (camara buena))
 		else (modify ?c (camara indiferente))
   )
@@ -116,7 +115,7 @@
 (defrule PERFIL::R-determinar-selfies ""
 	?c <- (comprador (selfies nil))
 	=>
-	(if (p-si-o-no "¿Utiliza usted la camara para hacerse selfies a menudo(si/no)? ")
+	(if (p-si-o-no "Utiliza usted la camara para hacerse selfies a menudo(si/no)? ")
   	then (modify ?c (selfies si))
 		else (modify ?c (selfies no))
   )
@@ -125,7 +124,7 @@
 (defrule PERFIL::R-determinar-cam-ecosistema-apple ""
 	?c <- (comprador (ecosistema-apple nil))
 	=>
-	(if (p-si-o-no "¿Tiene usted otros dispositivos de apple (si/no)? ")
+	(if (p-si-o-no "Tiene usted otros dispositivos de apple (si/no)? ")
   	then (modify ?c (ecosistema-apple si))
 		else (modify ?c (ecosistema-apple no))
   )
@@ -142,7 +141,7 @@
 (defrule PERFIL::R2-determinar-almacenamiento ""
 	?c <- (comprador (espacio nil))
 	=>
-	(if (p-si-o-no "¿Almacena usted muchos archivos o fotos en su dispositivo (si/no)? ")
+	(if (p-si-o-no "Almacena usted muchos archivos o fotos en su dispositivo (si/no)? ")
   	then (modify ?c (espacio mucho))
 		else (modify ?c (espacio poco))
   )
@@ -150,18 +149,19 @@
 ;;;****************************************************
 ;;;* PERFIL DE MOVIL *
 ;;;****************************************************
-(defmodule PERFILM (import DATOS ?ALL));TODO: importar solo lo necesario
-
+(defmodule PERFILM (import DATOS ?ALL));
 (defrule PERFILM::R3-determinar-gama-alta ""
 	?m <- (buscamovil (gama media))
-	(comprador (presupuesto ?p &: (>= ?p 400))(juegos-y-apps ?ja &: (eq ?ja muchos))(camara ?c))
+	(or(comprador (presupuesto ?p &: (>= ?p 400))(juegos-y-apps ?ja &: (eq ?ja muchos)))
+		(comprador (presupuesto ?p &: (< ?p 400))(juegos-y-apps ?ja &: (eq ?ja muchos))))
 	=>
 	(modify ?m (gama alta))
 )
 
 (defrule PERFILM::R3-determinar-gama-baja ""
 	?m <- (buscamovil (gama media))
-	(comprador (presupuesto ?p &: (< ?p 150))(juegos-y-apps ?ja &: (eq ?ja pocos))(camara ?c))
+	(or(comprador (presupuesto ?p &: (<= ?p 150)))
+		(comprador (presupuesto ?p &: (> ?p 150))(juegos-y-apps ?ja &: (eq ?ja pocos))))
 	=>
 	(modify ?m (gama baja))
 )
@@ -175,95 +175,98 @@
 		else (modify ?m (sistema-operativo Android))
 	)
 )
+(defrule PERFILM::R7-lista-inicial""
+	(comprador(presupuesto ?p))
+	(buscamovil (gama ?g)(sistema-operativo ?s))
+	?rm <- (rmovil (modelo ?n)(gama ?g)(sistema-operativo ?s)(precio ?pr &: (<= ?pr ?p)))
 
-(defrule PERFILM::R5-determinar-espacio ""
-  ?m <- (buscamovil (espacio nil))
-	(comprador (espacio ?e))
+	?l <- (lista (lista-moviles $?lmoviles))
+	(test (not(member ?n $?lmoviles)))
 	=>
-  (modify ?m (espacio ?e))
-)
+	(modify ?l (lista-moviles ?lmoviles ?n))
 
-(defrule PERFILM::R-determinar-cam-trasera-buena ""
-	?m <- (buscamovil (cam-trasera nil))
-	(comprador (camara buena))
-  =>
-	(modify ?m (cam-trasera buena))
 )
+;;;****************************************************
+;;;* PERFIL DE MOVIL *
+;;;****************************************************
+(defmodule FILTRO (import DATOS ?ALL));
 
-(defrule PERFILM::R-determinar-cam-trasera-mala ""
-	?m <- (buscamovil (cam-trasera nil))
-	(comprador (camara indiferente))
+(defrule FILTRO::R5-determinar-espacio ""
+	(comprador (espacio ?e &: (eq ?e mucho)))
+	?l <- (lista (lista-moviles $?lmov1 ?mov $?lmov2 ))
+	(rmovil (modelo ?mov)(espacio poco))
 	=>
-	(modify ?m (cam-trasera mala))
+	(modify ?l (lista-moviles ?lmov1 ?lmov2))
 )
 
-(defrule PERFILM::R-determinar-cam-frontal-buena ""
-	?m <- (buscamovil (cam-frontal nil))
-	(comprador (selfies si))
-  =>
-	(modify ?m (cam-frontal buena))
-)
-
-(defrule PERFILM::R-determinar-cam-frontal-mala ""
-	?m <- (buscamovil (cam-frontal nil))
-	(comprador (selfies no))
+(defrule FILTRO::R5-determinar-cam-trasera ""
+	(comprador (camara ?c &: (eq ?c buena)))
+	?l <- (lista (lista-moviles $?lmov1 ?mov $?lmov2 ))
+	(rmovil (modelo ?mov)(cam-trasera mala))
 	=>
-	else (modify ?m (cam-frontal mala))
+	(modify ?l (lista-moviles ?lmov1 ?lmov2))
 )
 
-(defrule PERFILM::R6-determinar-memoria-mucha
-	?m <- (buscamovil (memoria nil))
-	(comprador (juegos-y-apps ?ja &: (or (eq ?ja algunos)(eq ?ja muchos))))
+(defrule FILTRO::R5-determinar-cam-frontal ""
+	(comprador (selfies ?s &: (eq ?s si)))
+	?l <- (lista (lista-moviles $?lmov1 ?mov $?lmov2 ))
+	(rmovil (modelo ?mov)(cam-frontal mala))
 	=>
-	(modify ?m (memoria mucha))
+	(modify ?l (lista-moviles ?lmov1 ?lmov2))
 )
 
-(defrule PERFILM::R6-determinar-memoria-poca
-	?m <- (buscamovil (memoria nil))
-	(comprador (juegos-y-apps ?ja &: (eq ?ja pocos)))
+(defrule FILTRO::R6-determinar-memoria-mucha
+	(comprador (juegos-y-apps ?ja &: (neq ?ja pocos)))
+	?l <- (lista (lista-moviles $?lmov1 ?mov $?lmov2 ))
+	(rmovil (modelo ?mov)(memoria poca))
 	=>
-	(modify ?m (memoria poca))
+	(modify ?l (lista-moviles ?lmov1 ?lmov2))
 )
 
 ;;;*****************************************************
 ;;;* DECISION *
 ;;;*****************************************************
 (defmodule DECISION (import DATOS ?ALL))
-(defrule DECISION::R7-determinar-moviles ""
-	(buscamovil (espacio ?e)(gama ?g)(sistema-operativo ?s)(cam-frontal ?f)(cam-trasera ?t)(memoria ?mem))
-	?rm <- (rmovil (modelo ?n)(espacio ?e)(gama ?g)(memoria ?mem)(sistema-operativo ?s)(cam-frontal ?f)(cam-trasera ?t))
-
-	;(rmovil (modelo "Bq Aquaris E5 16GB 1GB RAM")(precio 120)(espacio poco)(memoria poca)(sistema-operativo Android)(gama media)(cam-frontal mala)(cam-trasera buena))
-	?lp <- (listapre (lista-moviles $?lmoviles))
-	(test (not(member ?n $?lmoviles)))
-	=>
-	(modify ?lp (lista-moviles ?lmoviles ?n))
-)
+; (defrule DECISION::Rx-imprimir-busqueda ""
+; 	(declare (salience 10))
+; 	(buscamovil (espacio ?e)(gama ?g)(sistema-operativo ?s)(cam-frontal ?f)(cam-trasera ?t)(memoria ?mem))
+;
+; 	=>
+; 	(printout t crlf crlf)
+; 	(printout t ?e ?g ?s ?f ?t ?mem)
+;   (printout t crlf crlf)
+;
+; )
 
 ;;;*****************************************************
 ;;;* MODULO DE PRESENTACION DEL SISTEMA Y CONCLUSIONES *
 ;;;*****************************************************
 (defmodule PRESENTACION (import DATOS ?ALL))
-;TODO: importar solo lo necesario
-; (defrule PRESENTACION::R8-intro ""
-;   (declare (salience 10))
-;   =>
-;   (printout t crlf crlf)
-;   (printout t "Prototipo 1: Sistema Experto para eleccion de moviles")
-;   (printout t crlf crlf)
-; )
+(defrule PRESENTACION::R11-resultado ""
+	(declare (salience 10))
+  ?lp <- (lista (lista-moviles $?lmovilesprev1 ?m1 $?lmovilessig1))
+				(lista (lista-moviles $?lmovilesprev2 ?m2 $?lmovilessig2))
+	(test (neq ?m2 ?m1))
 
-;
-;(printout t "Terminales sugeridos:")
-
-(defrule PRESENTACION::R9-resultado ""
-  ?lp <- (listapre (lista-moviles ?m $?lmoviles))
-
-  =>
+	(and
+	  (rmovil (modelo ?m1)(precio ?p1))
+	  (not (rmovil (modelo ?m2)(precio ?p2 &: (< ?p2 ?p1))))
+	)
+	=>
 	(printout t crlf crlf)
-	(printout t ?m)
+	(printout t ?m1 ", precio:" ?p1)
   (printout t crlf crlf)
-		(modify ?lp (lista-moviles ?lmoviles))
+		(modify ?lp (lista-moviles ?lmovilesprev1 ?lmovilessig1))
+  ;presentar caracteristicas del telefono
+)
+(defrule PRESENTACION::R11-resultado-unico""
+  ?lp <- (lista (lista-moviles ?m ))
+	(rmovil (modelo ?m)(precio ?p))
+	=>
+	(printout t crlf crlf)
+	(printout t ?m ", precio:" ?p)
+  (printout t crlf crlf)
+		(modify ?lp (lista-moviles ))
   ;presentar caracteristicas del telefono
 )
 
@@ -273,4 +276,4 @@
 
 (defrule MAIN::inicio
 	(initial-fact)
-=>	(focus DATOS PERFIL PERFILM DECISION PRESENTACION));TODO definir orden de operacion
+=>	(focus DATOS PERFIL PERFILM FILTRO DECISION PRESENTACION))
