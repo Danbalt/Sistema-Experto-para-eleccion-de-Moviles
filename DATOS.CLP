@@ -4,7 +4,7 @@
 ;(rmovil(precio)(modelo)(espacio)(memoria)(sistema-operativo)(gama)(cam-frontal)(cam-trasera))
 (rmovil(modelo "iPhone 6 32GB 2GB RAM")(precio 379)(espacio mucho)(memoria mucha)(sistema-operativo iOS)(gama media)(cam-frontal mala)(cam-trasera buena))
 (rmovil(modelo "iPhone 7 64GB 2GB RAM")(precio 619)(espacio mucho)(memoria mucha)(sistema-operativo iOS)(gama alta)(cam-frontal buena)(cam-trasera buena))
-(rmovil(modelo "iPhone 8 64GB 2GB RAM")(precio 779)(espacio mucho)(memoria mucha)(sistema-operativo iOS)(gama media)(cam-frontal buena)(cam-trasera buena))
+(rmovil(modelo "iPhone 8 64GB 2GB RAM")(precio 779)(espacio mucho)(memoria mucha)(sistema-operativo iOS)(gama alta)(cam-frontal buena)(cam-trasera buena))
 (rmovil(modelo "Bq Aquaris E5 16GB 1GB RAM")(precio 120)(espacio poco)(memoria poca)(sistema-operativo Android)(gama baja)(cam-frontal mala)(cam-trasera buena))
 (rmovil(modelo "Bq Aquaris M5 16GB 2GB RAM")(precio 187)(espacio poco)(memoria mucha)(sistema-operativo Android)(gama media)(cam-frontal buena)(cam-trasera buena))
 (rmovil(modelo "Bq Aquaris X 32GB 3GB RAM")(precio 259)(espacio mucha)(memoria mucha)(sistema-operativo Android)(gama alta)(cam-frontal buena)(cam-trasera buena))
