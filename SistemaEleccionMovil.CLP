@@ -4,9 +4,7 @@
 ;;;     Prototipo del Sistema (sintacticamente incorrecto) que incluye
 ;;;     estructura modular y algunas reglas
 ;;;
-;;;     Falta la definicion del mapa de conocimiento mediante COOL
-;;;
-;;;    (n.a.)Para ejecutar, primero "load", despues "reset" y finalmente "run".
+;;;    Para ejecutar, primero "load", despues "reset" y finalmente "run".
 ;;;==========================================================================
 (defmodule MAIN (export ?ALL))
 
@@ -47,7 +45,6 @@
 (deftemplate listapre
 	(multislot lista-moviles))
 
-;(rmovil(precio)(modelo)(espacio)(memoria)(sistema-operativo)(gama)(cam-frontal)(cam-trasera))
 (defrule inicio
 	(initial-fact)
 =>
@@ -90,7 +87,6 @@
 	)
 	?respuesta
 )
-
 
 ;;;*******************************************************************
 ;;;* MODULO DE OBTENCION DE PERFIL DE USUARIO
@@ -163,7 +159,7 @@
 	(modify ?m (gama alta))
 )
 
-(defrule PERFILM::R3-determinar-gama-alta ""
+(defrule PERFILM::R3-determinar-gama-baja ""
 	?m <- (buscamovil (gama media))
 	(comprador (presupuesto ?p &: (< ?p 150))(juegos-y-apps ?ja &: (eq ?ja pocos))(camara ?c))
 	=>
@@ -257,14 +253,14 @@
 ;   (printout t crlf crlf)
 ; )
 
-;(printout t crlf crlf)
+;
 ;(printout t "Terminales sugeridos:")
 
 (defrule PRESENTACION::R9-resultado ""
   ?lp <- (listapre (lista-moviles ?m $?lmoviles))
 
   =>
-
+	(printout t crlf crlf)
 	(printout t ?m)
   (printout t crlf crlf)
 		(modify ?lp (lista-moviles ?lmoviles))
