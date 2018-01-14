@@ -152,7 +152,7 @@
 (defmodule PERFILM (import DATOS ?ALL));
 (defrule PERFILM::R-determinar-gama-alta ""
 	?m <- (buscamovil (gama media))
-	(or(comprador (presupuesto ?p &: (>= ?p 400))(juegos-y-apps ?ja &: (eq ?ja muchos)))
+	(or(comprador (presupuesto ?p &: (>= ?p 400))(juegos-y-apps ?ja &: (eq ?ja algunos)))
 		(comprador (presupuesto ?p &: (< ?p 400))(juegos-y-apps ?ja &: (eq ?ja muchos))))
 	=>
 	(modify ?m (gama alta))
@@ -224,21 +224,6 @@
 )
 
 ;;;*****************************************************
-;;;* DECISION *
-;;;*****************************************************
-(defmodule DECISION (import DATOS ?ALL))
-; (defrule DECISION::Rx-imprimir-busqueda ""
-; 	(declare (salience 10))
-; 	(buscamovil (espacio ?e)(gama ?g)(sistema-operativo ?s)(cam-frontal ?f)(cam-trasera ?t)(memoria ?mem))
-;
-; 	=>
-; 	(printout t crlf crlf)
-; 	(printout t ?e ?g ?s ?f ?t ?mem)
-;   (printout t crlf crlf)
-;
-; )
-
-;;;*****************************************************
 ;;;* MODULO DE PRESENTACION DEL SISTEMA Y CONCLUSIONES *
 ;;;*****************************************************
 (defmodule PRESENTACION (import DATOS ?ALL))
@@ -257,7 +242,6 @@
 	(printout t ?m1 ", precio:" ?p1)
   (printout t crlf crlf)
 		(modify ?lp (lista-moviles ?lmovilesprev1 ?lmovilessig1))
-  ;presentar caracteristicas del telefono
 )
 (defrule PRESENTACION::R-resultado-unico ""
   ?lp <- (lista (lista-moviles ?m ))
@@ -266,8 +250,15 @@
 	(printout t crlf crlf)
 	(printout t ?m ", precio:" ?p)
   (printout t crlf crlf)
-		(modify ?lp (lista-moviles ))
-  ;presentar caracteristicas del telefono
+		(retract  ?lp )
+)
+
+(defrule PRESENTACION::R-resultado-nulo ""
+  ?lp <- (lista (lista-moviles ))
+	=>
+	(printout t crlf crlf)
+	(printout t "No se ha encontrado ningun movil que satisfaga sus necesidades" crlf "con esas caracteristicas, por favor revise sus respuestas")
+  (printout t crlf crlf)
 )
 
 ;******************************************
@@ -276,4 +267,4 @@
 
 (defrule MAIN::inicio
 	(initial-fact)
-=>	(focus DATOS PERFIL PERFILM FILTRO DECISION PRESENTACION))
+=>	(focus DATOS PERFIL PERFILM FILTRO PRESENTACION))
