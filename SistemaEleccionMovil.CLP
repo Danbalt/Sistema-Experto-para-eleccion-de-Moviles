@@ -95,7 +95,7 @@
 (defmodule PERFIL (import DATOS ?ALL))
 
 
-(defrule PERFIL::R1-determinar-presupuesto ""
+(defrule PERFIL::R-determinar-presupuesto ""
   ?c <- (comprador (presupuesto 0));presupuesto del usuario no contiene valor
   =>
   (bind ?r
@@ -103,7 +103,7 @@
 	(modify ?c (presupuesto ?r))
 )
 
-(defrule PERFIL::R2-determinar-camara ""
+(defrule PERFIL::R-determinar-camara ""
   ?c <- (comprador (camara nil));necesidad del usuario no contiene valor
   =>
   (if (p-si-o-no "Le da usted importancia a la camara del terminal (si/no)? ")
@@ -138,7 +138,7 @@
 	(modify ?c (juegos-y-apps ?rja))
 )
 
-(defrule PERFIL::R2-determinar-almacenamiento ""
+(defrule PERFIL::R-determinar-almacenamiento ""
 	?c <- (comprador (espacio nil))
 	=>
 	(if (p-si-o-no "Almacena usted muchos archivos o fotos en su dispositivo (si/no)? ")
@@ -150,7 +150,7 @@
 ;;;* PERFIL DE MOVIL *
 ;;;****************************************************
 (defmodule PERFILM (import DATOS ?ALL));
-(defrule PERFILM::R3-determinar-gama-alta ""
+(defrule PERFILM::R-determinar-gama-alta ""
 	?m <- (buscamovil (gama media))
 	(or(comprador (presupuesto ?p &: (>= ?p 400))(juegos-y-apps ?ja &: (eq ?ja muchos)))
 		(comprador (presupuesto ?p &: (< ?p 400))(juegos-y-apps ?ja &: (eq ?ja muchos))))
@@ -158,7 +158,7 @@
 	(modify ?m (gama alta))
 )
 
-(defrule PERFILM::R3-determinar-gama-baja ""
+(defrule PERFILM::R-determinar-gama-baja ""
 	?m <- (buscamovil (gama media))
 	(or(comprador (presupuesto ?p &: (<= ?p 150)))
 		(comprador (presupuesto ?p &: (> ?p 150))(juegos-y-apps ?ja &: (eq ?ja pocos))))
@@ -166,7 +166,7 @@
 	(modify ?m (gama baja))
 )
 
-(defrule PERFILM::R4-determinar-sistema-operativo ""
+(defrule PERFILM::R-determinar-sistema-operativo ""
   ?m <- (buscamovil (sistema-operativo nil))
 	(comprador (ecosistema-apple ?ea))
 	=>
@@ -175,7 +175,7 @@
 		else (modify ?m (sistema-operativo Android))
 	)
 )
-(defrule PERFILM::R7-lista-inicial""
+(defrule PERFILM::R-lista-inicial""
 	(comprador(presupuesto ?p))
 	(buscamovil (gama ?g)(sistema-operativo ?s))
 	?rm <- (rmovil (modelo ?n)(gama ?g)(sistema-operativo ?s)(precio ?pr &: (<= ?pr ?p)))
@@ -191,7 +191,7 @@
 ;;;****************************************************
 (defmodule FILTRO (import DATOS ?ALL));
 
-(defrule FILTRO::R5-determinar-espacio ""
+(defrule FILTRO::R-determinar-espacio ""
 	(comprador (espacio ?e &: (eq ?e mucho)))
 	?l <- (lista (lista-moviles $?lmov1 ?mov $?lmov2 ))
 	(rmovil (modelo ?mov)(espacio poco))
@@ -199,7 +199,7 @@
 	(modify ?l (lista-moviles ?lmov1 ?lmov2))
 )
 
-(defrule FILTRO::R5-determinar-cam-trasera ""
+(defrule FILTRO::R-determinar-cam-trasera ""
 	(comprador (camara ?c &: (eq ?c buena)))
 	?l <- (lista (lista-moviles $?lmov1 ?mov $?lmov2 ))
 	(rmovil (modelo ?mov)(cam-trasera mala))
@@ -207,7 +207,7 @@
 	(modify ?l (lista-moviles ?lmov1 ?lmov2))
 )
 
-(defrule FILTRO::R5-determinar-cam-frontal ""
+(defrule FILTRO::R-determinar-cam-frontal ""
 	(comprador (selfies ?s &: (eq ?s si)))
 	?l <- (lista (lista-moviles $?lmov1 ?mov $?lmov2 ))
 	(rmovil (modelo ?mov)(cam-frontal mala))
@@ -215,7 +215,7 @@
 	(modify ?l (lista-moviles ?lmov1 ?lmov2))
 )
 
-(defrule FILTRO::R6-determinar-memoria-mucha
+(defrule FILTRO::R-determinar-memoria-mucha
 	(comprador (juegos-y-apps ?ja &: (neq ?ja pocos)))
 	?l <- (lista (lista-moviles $?lmov1 ?mov $?lmov2 ))
 	(rmovil (modelo ?mov)(memoria poca))
@@ -242,7 +242,7 @@
 ;;;* MODULO DE PRESENTACION DEL SISTEMA Y CONCLUSIONES *
 ;;;*****************************************************
 (defmodule PRESENTACION (import DATOS ?ALL))
-(defrule PRESENTACION::R11-resultado ""
+(defrule PRESENTACION::R-resultado-varios ""
 	(declare (salience 10))
   ?lp <- (lista (lista-moviles $?lmovilesprev1 ?m1 $?lmovilessig1))
 				(lista (lista-moviles $?lmovilesprev2 ?m2 $?lmovilessig2))
@@ -259,7 +259,7 @@
 		(modify ?lp (lista-moviles ?lmovilesprev1 ?lmovilessig1))
   ;presentar caracteristicas del telefono
 )
-(defrule PRESENTACION::R11-resultado-unico""
+(defrule PRESENTACION::R-resultado-unico ""
   ?lp <- (lista (lista-moviles ?m ))
 	(rmovil (modelo ?m)(precio ?p))
 	=>
